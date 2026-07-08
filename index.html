@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rust Plugins — Плагины для сервера</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0d0f;
+    --bg2: #131316;
+    --bg3: #1a1a1f;
+    --card: #16161b;
+    --card-hover: #1e1e25;
+    --border: #2a2a35;
+    --orange: #f97316;
+    --orange2: #ea580c;
+    --orange-glow: rgba(249,115,22,0.18);
+    --text: #e8e8ee;
+    --muted: #7a7a8c;
+    --tag-bg: #1e1e28;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; min-height: 100vh; }
+
+  /* NAV */
+  nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px; height: 64px;
+    background: rgba(13,13,15,0.9); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 100;
+  }
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .logo-icon {
+    width: 32px; height: 32px; background: var(--orange);
+    border-radius: 6px; display: flex; align-items: center; justify-content: center;
+    font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 18px; color: #fff;
+  }
+  .logo-text { font-family: 'Rajdhani', sans-serif; font-size: 20px; font-weight: 700; color: var(--text); letter-spacing: 0.5px; }
+  .logo-text span { color: var(--orange); }
+  .nav-right { display: flex; align-items: center; gap: 24px; }
+  .nav-link { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; transition: color .2s; }
+  .nav-link:hover { color: var(--text); }
+  .btn-orders {
+    background: transparent; border: 1px solid var(--border);
+    color: var(--text); padding: 8px 18px; border-radius: 8px;
+    font-size: 13px; font-weight: 500; cursor: pointer; transition: all .2s;
+    text-decoration: none;
+  }
+  .btn-orders:hover { border-color: var(--orange); color: var(--orange); }
+
+  /* HERO */
+  .hero {
+    text-align: center; padding: 90px 24px 70px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
+    width: 700px; height: 400px;
+    background: radial-gradient(ellipse, rgba(249,115,22,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--tag-bg); border: 1px solid var(--border);
+    border-radius: 100px; padding: 6px 16px; font-size: 12px;
+    color: var(--muted); margin-bottom: 28px; letter-spacing: 1.5px; text-transform: uppercase;
+  }
+  .hero-badge::before { content: ''; width: 6px; height: 6px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 6px #22c55e; }
+  h1 {
+    font-family: 'Rajdhani', sans-serif; font-size: clamp(42px, 7vw, 80px);
+    font-weight: 700; line-height: 1.0; letter-spacing: -1px;
+    margin-bottom: 20px;
+  }
+  h1 span { color: var(--orange); }
+  .hero-sub { font-size: 16px; color: var(--muted); max-width: 480px; margin: 0 auto 48px; line-height: 1.7; }
+  .stats { display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; }
+  .stat-val { font-family: 'Rajdhani', sans-serif; font-size: 32px; font-weight: 700; color: var(--text); }
+  .stat-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 2px; }
+
+  /* FILTERS */
+  .filters { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; padding: 0 24px 40px; }
+  .filter-btn {
+    background: var(--tag-bg); border: 1px solid var(--border);
+    color: var(--muted); padding: 8px 20px; border-radius: 100px;
+    font-size: 13px; font-weight: 500; cursor: pointer; transition: all .2s;
+  }
+  .filter-btn:hover { border-color: var(--orange); color: var(--text); }
+  .filter-btn.active { background: var(--orange); border-color: var(--orange); color: #fff; }
+
+  /* GRID */
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; max-width: 1100px; margin: 0 auto; padding: 0 24px 80px; }
+
+  /* CARD */
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+    overflow: hidden; cursor: pointer; transition: all .25s;
+    position: relative;
+  }
+  .card:hover { border-color: var(--orange); transform: translateY(-3px); box-shadow: 0 0 30px var(--orange-glow); }
+  .card.featured { border-color: var(--orange); box-shadow: 0 0 20px var(--orange-glow); }
+  .card-icon {
+    height: 160px; display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .card-icon svg { width: 64px; height: 64px; opacity: 0.9; position: relative; z-index: 1; }
+  .card-icon::after {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, var(--glow, rgba(249,115,22,0.15)) 0%, transparent 70%);
+  }
+  .card-body { padding: 20px 22px 22px; }
+  .card-category { font-size: 11px; color: var(--orange); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; font-weight: 600; }
+  .card-title { font-family: 'Rajdhani', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 6px; color: var(--text); }
+  .card-desc { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 18px; }
+  .card-footer { display: flex; align-items: center; justify-content: space-between; }
+  .card-price { font-family: 'Rajdhani', sans-serif; font-size: 22px; font-weight: 700; color: var(--text); }
+  .card-price sup { font-size: 13px; color: var(--muted); font-family: 'Inter', sans-serif; font-weight: 400; }
+  .btn-buy {
+    background: var(--orange); color: #fff; border: none;
+    padding: 9px 20px; border-radius: 8px; font-size: 13px; font-weight: 600;
+    cursor: pointer; transition: all .2s; white-space: nowrap;
+  }
+  .btn-buy:hover { background: var(--orange2); transform: scale(1.04); }
+  .badge-limit {
+    position: absolute; top: 14px; right: 14px;
+    background: rgba(249,115,22,0.15); border: 1px solid rgba(249,115,22,0.4);
+    color: var(--orange); font-size: 11px; font-weight: 600;
+    padding: 4px 10px; border-radius: 100px;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border); padding: 40px 48px;
+    text-align: center;
+  }
+  .footer-logo { font-family: 'Rajdhani', sans-serif; font-size: 22px; font-weight: 700; margin-bottom: 20px; }
+  .footer-logo span { color: var(--orange); }
+  .footer-links { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; margin-bottom: 24px; }
+  .footer-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color .2s; }
+  .footer-links a:hover { color: var(--orange); }
+  .footer-btns { display: flex; justify-content: center; gap: 12px; margin-bottom: 24px; }
+  .footer-btn {
+    border: 1px solid var(--border); color: var(--muted);
+    padding: 9px 24px; border-radius: 8px; font-size: 13px; font-weight: 500;
+    cursor: pointer; background: transparent; transition: all .2s; text-decoration: none;
+    display: inline-block;
+  }
+  .footer-btn:hover { border-color: var(--orange); color: var(--orange); }
+  .footer-copy { font-size: 12px; color: var(--muted); opacity: 0.6; }
+
+  @media (max-width: 640px) {
+    nav { padding: 0 20px; }
+    .stats { gap: 32px; }
+    footer { padding: 32px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-icon">R</div>
+    <div class="logo-text">RUST <span>PLUGINS</span></div>
+  </a>
+  <div class="nav-right">
+    <a href="#catalog" class="nav-link">Каталог</a>
+    <a href="https://t.me/pluginsrust_bot" target="_blank" class="btn-orders">Мои заказы</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">Сервер на связи · Oxide</div>
+  <h1>ПЛАГИНЫ ДЛЯ<br><span>RUST</span> СЕРВЕРА</h1>
+  <p class="hero-sub">Готовые решения для защиты баз, ивентов, экономики и администрирования. Файл приходит в Telegram сразу после оплаты.</p>
+  <div class="stats">
+    <div><div class="stat-val">10</div><div class="stat-label">Плагинов</div></div>
+    <div><div class="stat-val">Oxide</div><div class="stat-label">Совместимость</div></div>
+    <div><div class="stat-val">24/7</div><div class="stat-label">Автовыдача</div></div>
+  </div>
+</section>
+
+<div class="filters" id="catalog">
+  <button class="filter-btn active" onclick="filter('all', this)">Все</button>
+  <button class="filter-btn" onclick="filter('ui', this)">UI</button>
+  <button class="filter-btn" onclick="filter('защита', this)">Защита</button>
+  <button class="filter-btn" onclick="filter('администрирование', this)">Администрирование</button>
+  <button class="filter-btn" onclick="filter('ивенты', this)">Ивенты</button>
+  <button class="filter-btn" onclick="filter('экономика', this)">Экономика</button>
+</div>
+
+<div class="grid" id="grid">
+
+  <div class="card" data-cat="ui">
+    <div class="card-icon" style="background: linear-gradient(135deg, #0f1a2e, #0d1520); --glow: rgba(56,189,248,0.2);">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="8" y="14" width="48" height="36" rx="4" stroke="#38bdf8" stroke-width="2"/>
+        <rect x="14" y="22" width="16" height="10" rx="2" fill="#38bdf8" opacity=".3"/>
+        <rect x="14" y="36" width="36" height="2" rx="1" fill="#38bdf8" opacity=".4"/>
+        <rect x="14" y="40" width="24" height="2" rx="1" fill="#38bdf8" opacity=".25"/>
+        <circle cx="46" cy="27" r="7" stroke="#38bdf8" stroke-width="2"/>
+        <line x1="46" y1="23" x2="46" y2="31" stroke="#38bdf8" stroke-width="1.5"/>
+        <line x1="42" y1="27" x2="50" y2="27" stroke="#38bdf8" stroke-width="1.5"/>
+      </svg>
+    </div>
+    <div class="card-body">
+      <div class="card-category">UI</div>
+      <div class="card-title">YourAIMenu — инфо-панели</div>
+      <div class="card-desc">Красивое и удобное GUI инфо-панелей для вашего сервера</div>
+      <div class="card-footer">
+        <div class="card-price">500 <sup>₽</sup></div>
+        <button class="btn-buy" onclick="openBot()">Купить →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card featured" data-cat="администрирование">
+    <div class="card-icon" style="background: linear-gradient(135deg, #1a1000, #0f0d00); --glow: rgba(249,115,22,0.25);">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="32" cy="22" r="8" stroke="#f97316" stroke-width="2"/>
+        <line x1="32" y1="14" x2="32" y2="8" stroke="#f97316" stroke-width="2" stroke-linecap="round"/>
+        <line x1="32" y1="36" x2="32" y2="30" stroke="#f97316" stroke-width="2" stroke-linecap="round"/>
+        <line x1="24" y1="22" x2="18" y2="22" stroke="#f97316" stroke-width="2" stroke-linecap="round"/>
+        <line x1="46" y1="22" x2="40" y2="22" stroke="#f97316" stroke-width="2" stroke-linecap="round"/>
+        <rect x="20" y="40" width="24" height="14" rx="3" stroke="#f97316" stroke-width="1.5" fill="#f97316" fill-opacity=".1"/>
+        <line x1="32" y1="36" x2="32" y2="40" stroke="#f97316" stroke-width="1.5"/>
+      </svg>
+    </div>
+    <div class="card-body">
+      <div class="card-category">Администрирование</div>
+      <div class="card-title">YourAITurret — продвинутые турели</div>
+      <div class="card-desc">Управление турелями, админ-группа, установка на любые поверхности</div>
+      <div class="card-footer">
+        <div class="card-price">800 <sup>₽</sup></div>
+        <button class="btn-buy" onclick="openBot()">Купить →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-cat="администрирование">
+    <div class="card-icon" style="background: linear-gradient(135deg, #0a1a0a, #0d150d); --glow: rgba(34,197,94,0.2);">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="32" cy="32" r="16" stroke="#22c55e" stroke-width="2" stroke-dasharray="4 2"/>
+        <circle cx="32" cy="32" r="8" fill="#22c55e" fill-opacity=".15" stroke="#22c55e" stroke-width="1.5"/>
+        <path d="M32 24 L32 16" stroke="#22c55e" stroke-width="2" stroke-linecap="round"/>
+        <path d="M28 28 L22 22" stroke="#22c55e" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M36 28 L42 22" stroke="#22c55e" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="card-body">
+      <div class="card-category">Администрирование</div>
+      <div class="card-title">IQRestart — умный перезапуск</div>
+      <div class="card-desc">Рестарт по расписанию с сохранением и автоподнятием плагинов</div>
+      <div class="card-footer">
+        <div class="card-price">1 000 <sup>₽</sup></div>
+        <button class="btn-buy" onclick="openBot()">Купить →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-cat="защита" style="position:relative;">
+    <div class="badge-limit">🔥 Осталось 10 из 10</div>
+    <div class="card-icon" style="background: linear-gradient(135deg, #0d1a0a, #0a150a); --glow: rgba(34,197,94,0.2);">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M32 10 L48 18 L48 34 C48 44 32 54 32 54 C32 54 16 44 16 34 L16 18 Z" stroke="#22c55e" stroke-width="2" fill="#22c55e" fill-opacity=".08"/>
+        <path d="M24 32 L30 38 L40 26" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="card-body">
+      <div class="card-category">Защита</div>
+      <div class="card-title">Купола — Dome Protection</div>
+      <div class="card-desc">Защита базы от вайпа — до вайпа</div>
+      <div class="card-footer">
+        <div class="card-price">1 000 000 <sup>₽</sup></div>
+        <button class="btn-buy" onclick="openBot()">Купить →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-cat="ивенты">
+    <div class="card-icon" style="background: linear-gradient(135deg, #1a0a0a, #150a0a); --glow: rgba(239,68,68,0.2);">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="32" cy="28" r="10" stroke="#ef4444" stroke-width="2"/>
+        <path d="M26 26 L30 30 L26 34" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity=".5"/>
+        <path d="M34 26 L38 30 L34 34" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M20 46 Q32 38 44 46" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round" opacity=".4"/>
+      </svg>
+    </div>
+    <div class="card-body">
+      <div class="card-category">Ивенты</div>
+      <div class="card-title">Судная ночь — Doomsday Hour</div>
+      <div class="card-desc">Ивент: волны ботов и зомби нападают на базы онлайн-игроков</div>
+      <div class="card-footer">
+        <div class="card-price">1 200 <sup>₽</sup></div>
+        <button class="btn-buy" onclick="openBot()">Купить →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card featured" data-cat="экономика">
+    <div class="card-icon" style="background: linear-gradient(135deg, #0f1a0f, #0d150a); --glow: rgba(249,115,22,0.2);">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 44 L20 28" stroke="#f97316" stroke-width="3" stroke-linecap="round"/>
+        <path d="M32 44 L32 20" stroke="#f97316" stroke-width="3" stroke-linecap="round"/>
+        <path d="M44 44 L44 32" stroke="#f97316" stroke-width="3" stroke-linecap="round"/>
+        <path d="M14 44 L50 44" stroke="#f97316" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="card-body">
+      <div class="card-category">Экономика</div>
+      <div class="card-title">YourAIManager — переработка</div>
+      <div class="card-desc">Ускорение переработчика и гибкая настройка выхода ресурсов</div>
+      <div class="card-footer">
+        <div class="card-price">800 <sup>₽</sup></div>
+        <button class="btn-buy" onclick="openBot()">Купить →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-cat="экономика">
+    <div class="card-icon" style="background: linear-gradient(135deg, #1a0f00, #150d00); --glow: rgba(251,191,36,0.2);">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M32 10 C32 10 26 20 26 28 C26 34 28.5 38 32 40 C35.5 38 38 34 38 28 C38 20 32 10 32 10Z" stroke="#fbbf24" stroke-width="2" fill="#fbbf24" fill-opacity=".15"/>
+        <path d="M32 40 L32 54" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/>
+        <path d="M26 48 L38 48" stroke="#fbbf24" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="card-body">
+      <div class="card-category">Экономика</div>
+      <div class="card-title">YourAISmelt — ускорение печей</div>
+      <div class="card-desc">Ускоряет работу всех видов печей (доработанная версия)</div>
+      <div class="card-footer">
+        <div class="card-price">800 <sup>₽</sup></div>
+        <button class="btn-buy" onclick="openBot()">Купить →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-cat="ивенты">
+    <div class="card-icon" style="background: linear-gradient(135deg, #1a0a0a, #150a0a); --glow: rgba(239,68,68,0.2);">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="16" y="24" width="32" height="24" rx="3" stroke="#ef4444" stroke-width="2" fill="#ef4444" fill-opacity=".08"/>
+        <path d="M24 24 L24 18 Q24 14 28 14 L36 14 Q40 14 40 18 L40 24" stroke="#ef4444" stroke-width="2"/>
+        <path d="M26 36 L30 40 L38 30" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity=".6"/>
+        <circle cx="32" cy="36" r="2" fill="#ef4444"/>
+      </svg>
+    </div>
+    <div class="card-body">
+      <div class="card-category">Ивенты</div>
+      <div class="card-title">Склеп — рейд-квест из ловушек</div>
+      <div class="card-desc">Нерушимая база-квест с ловушками, работает с CopyPaste и DomeProtection</div>
+      <div class="card-footer">
+        <div class="card-price">3 000 <sup>₽</sup></div>
+        <button class="btn-buy" onclick="openBot()">Купить →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-cat="экономика">
+    <div class="card-icon" style="background: linear-gradient(135deg, #001a0f, #00150a); --glow: rgba(16,185,129,0.2);">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="20" y1="44" x2="20" y2="20" stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
+        <line x1="20" y1="44" x2="44" y2="44" stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
+        <text x="14" y="20" font-family="monospace" font-size="10" fill="#10b981">×3</text>
+        <path d="M28 38 L32 28 L36 34 L40 22" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="card-body">
+      <div class="card-category">Экономика</div>
+      <div class="card-title">MagicGather — иксы ресурсов</div>
+      <div class="card-desc">Два плагина в одном: иксы ресурсов и лута тремя командами</div>
+      <div class="card-footer">
+        <div class="card-price">700 <sup>₽</sup></div>
+        <button class="btn-buy" onclick="openBot()">Купить →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-cat="администрирование">
+    <div class="card-icon" style="background: linear-gradient(135deg, #0a0a1a, #0a0a15); --glow: rgba(139,92,246,0.2);">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="16" y="16" width="10" height="10" rx="2" stroke="#8b5cf6" stroke-width="2"/>
+        <rect x="30" y="16" width="10" height="10" rx="2" stroke="#8b5cf6" stroke-width="2" fill="#8b5cf6" fill-opacity=".2"/>
+        <rect x="16" y="30" width="10" height="10" rx="2" stroke="#8b5cf6" stroke-width="2" fill="#8b5cf6" fill-opacity=".2"/>
+        <rect x="30" y="30" width="10" height="10" rx="2" stroke="#8b5cf6" stroke-width="2"/>
+        <circle cx="46" cy="46" r="8" stroke="#8b5cf6" stroke-width="2" fill="#8b5cf6" fill-opacity=".1"/>
+        <line x1="46" y1="42" x2="46" y2="50" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round"/>
+        <line x1="42" y1="46" x2="50" y2="46" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="card-body">
+      <div class="card-category">Администрирование</div>
+      <div class="card-title">SpawnControl — управление спавном</div>
+      <div class="card-desc">Игровой UI для управления всем живым на карте</div>
+      <div class="card-footer">
+        <div class="card-price">700 <sup>₽</sup></div>
+        <button class="btn-buy" onclick="openBot()">Купить →</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">RUST <span>PLUGINS</span></div>
+  <div class="footer-links">
+    <a href="#">Публичная оферта</a>
+    <a href="#">Конфиденциальность</a>
+    <a href="#">Возврат средств</a>
+  </div>
+  <div class="footer-btns">
+    <a href="mailto:your@email.com" class="footer-btn">Email</a>
+    <a href="https://t.me/pluginsrust_bot" target="_blank" class="footer-btn">Telegram</a>
+  </div>
+  <div class="footer-copy">Цифровые товары для игры Rust · Совместимость Oxide</div>
+</footer>
+
+<script>
+  function filter(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.card').forEach(card => {
+      if (cat === 'all' || card.dataset.cat === cat) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+  function openBot() {
+    window.open('https://t.me/pluginsrust_bot', '_blank');
+  }
+</script>
+
+</body>
+</html>
