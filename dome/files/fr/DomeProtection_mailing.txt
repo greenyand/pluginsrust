@@ -1,0 +1,25 @@
+DomeProtection — une mécanique de protection rare pour serveurs Rust, seulement 15 exemplaires
+
+Bonjour.
+
+Je vous propose de découvrir DomeProtection — un dôme de protection pour une base sur serveur Rust.
+
+Ce n'est pas un plugin grand public. Seulement 15 exemplaires sont prévus dans le monde, pour que la mécanique ne se retrouve pas sur un serveur sur deux et reste vraiment rare. L'offre est actuellement envoyée aux administrateurs de grands serveurs Rust. Qui arrive à temps — et à qui cela convient — peut réserver un exemplaire.
+
+Ce que DomeProtection apporte à votre serveur :
+— Recouvre la base du joueur d'un dôme de force : tout à l'intérieur devient insensible aux dégâts extérieurs.
+— Donne au joueur une valeur claire et concrète — la protection de sa progression. Facile à expliquer dans une boutique de dons et facile à vendre.
+— Une belle sphère lumineuse, marquée sur la carte : un privilège qu'on veut montrer et racheter.
+— S'adapte avec souplesse à votre projet et à différents paliers de prix — du VIP d'entrée au privilège premium.
+— Une base prête pour les packs Premium, zones PvE, bases de clan et d'événement.
+
+Pourquoi c'est intéressant pour un serveur :
+Le joueur n'achète pas une commande abstraite, mais la protection concrète de sa base. C'est l'une des valeurs les plus claires et les plus vendues sur Rust. Et le code du plugin est unique et quasiment non diffusé — vos joueurs auront ce que les voisins n'ont pas.
+
+Un rachat complet en usage exclusif est également possible. Après le rachat, les ventes se ferment et la mécanique ne reste que sur votre projet.
+
+Si cela vous intéresse — répondez, je vous enverrai les conditions et une démonstration.
+
+Cordialement,
+Rust Plugins
+@pluginsrust_bot

@@ -1,0 +1,30 @@
+DOME PROTECTION
+Série limitée · Rust — 15 exemplaires dans le monde
+====================================================
+
+L'IDÉE
+Une zone intouchable autour de la base
+DomeProtection recouvre la base du joueur d'un dôme de force. Tout ce qui est à l'intérieur devient invulnérable — constructions, défenses et véhicules sont protégés des dégâts extérieurs. Dehors, c'est le Rust hardcore habituel. Dedans, un territoire impossible à percer.
+
+POURQUOI ÇA SE VEND
+Le joueur achète la tranquillité, pas une « commande »
+- Protection absolue: Sous le dôme, la progression du joueur survit à tout assaut. Une valeur claire, facile à vendre dans une boutique de dons.
+- Un rendu spectaculaire: Le dôme apparaît comme une belle sphère lumineuse, marquée sur la carte. Un privilège qu'on veut montrer et racheter.
+- Réglage flexible: La zone et l'aspect de la sphère s'adaptent à votre projet et à différents paliers de prix — du VIP d'entrée au privilège premium.
+- Monétisation VIP: Une base prête pour les packs Premium, zones PvE, bases de clan et d'événement. La mécanique pour laquelle on s'abonne.
+
+LE PRINCIPE DE RARETÉ
+Seulement 15 exemplaires. Pas un de plus.
+Nous refusons délibérément de banaliser DomeProtection. Quinze serveurs dans le monde — puis la vente s'arrête. Ce n'est pas un plugin « comme les autres » : son code est unique et quasiment non diffusé. Vos joueurs verront ce que les voisins n'ont pas.
+
+DEUX FAÇONS DE L'OBTENIR
+1. Un exemplaire pour votre serveur (Un des 15): Vous réservez l'un des quinze exemplaires et lancez le dôme sur votre projet au prix plein. Qui arrive à temps rejoint le cercle restreint des serveurs dotés de cette mécanique.
+2. Rachat complet (Exclusif): Vous prenez le plugin en usage exclusif. Après le rachat, les ventes se ferment entièrement — la mécanique ne reste qu'à vous et n'apparaît nulle part ailleurs.
+
+À QUI ÇA S'ADRESSE
+Serveurs PvE · Protection anti-wipe · Packs VIP / Premium · Projets de clan · Zones d'événement · Grands serveurs Rust
+
+L'OFFRE EST DÉJÀ LANCÉE
+L'offre a été envoyée aux admins de grands serveurs Rust. Les exemplaires disponibles diminuent chaque jour.
+Écrivez : @pluginsrust_bot
+====================================================
