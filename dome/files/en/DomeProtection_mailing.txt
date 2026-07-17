@@ -1,0 +1,25 @@
+DomeProtection — a rare protection mechanic for Rust servers, only 15 copies
+
+Hello.
+
+I'd like you to consider DomeProtection — a protective dome for a base on a Rust server.
+
+This is not a mass-market public plugin. Only 15 copies are planned worldwide, so the mechanic doesn't end up on every other server and stays genuinely rare. The offer is currently being sent to admins of large Rust servers. Whoever's in time — and whoever it fits — can reserve a copy.
+
+What DomeProtection gives your server:
+— Covers a player's base with a force dome: everything inside becomes immune to outside damage.
+— Gives the player a clear, tangible value — protection of their progress. Easy to explain in a donation store and easy to sell.
+— A beautiful glowing sphere, marked on the map: a perk players want to show off and buy again.
+— Adapts flexibly to your project and to different price tiers — from entry VIP to a top perk.
+— A ready foundation for Premium packages, PvE zones, clan and event bases.
+
+Why it's interesting for a server:
+The player buys not an abstract command, but concrete protection of their base. It's one of the clearest and best-selling values in Rust. And the plugin's code is unique and virtually undistributed — your players will have what their neighbors don't.
+
+A full buyout into sole ownership is also possible. After the buyout, further sales close, and the mechanic stays only on your project.
+
+If you're interested — reply and I'll send terms and a demonstration.
+
+Best regards,
+Rust Plugins
+@pluginsrust_bot
