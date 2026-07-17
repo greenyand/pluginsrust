@@ -1,0 +1,30 @@
+DOME PROTECTION
+Série limitada · Rust — 15 cópias no mundo
+====================================================
+
+A IDEIA
+Uma zona intocável ao redor da base
+O DomeProtection cobre a base do jogador com uma cúpula de força. Tudo lá dentro fica invulnerável — construções, defesas e veículos ficam protegidos do dano externo. Do lado de fora, é o Rust hardcore de sempre. Dentro, um território que não dá para romper.
+
+POR QUE VENDE
+O jogador compra tranquilidade, não um « comando »
+- Proteção absoluta: Sob a cúpula, o progresso do jogador sobrevive a qualquer ataque. Um valor claro, fácil de vender na loja de doações.
+- Visual marcante: A cúpula aparece como uma bela esfera brilhante, marcada no mapa. Um privilégio que o jogador quer exibir e comprar de novo.
+- Configuração flexível: A zona e o visual da esfera se adaptam ao seu projeto e a diferentes faixas de preço — do VIP básico ao privilégio topo.
+- Monetização VIP: Uma base pronta para pacotes Premium, zonas PvE, bases de clã e evento. A mecânica pela qual se assina.
+
+O PRINCÍPIO DA RARIDADE
+Apenas 15 cópias. Nem uma a mais.
+Deliberadamente não tornamos o DomeProtection um produto de massa. Quinze servidores no mundo — e a venda para. Não é um plugin « como o de todo mundo »: seu código é único e praticamente não distribuído. Seus jogadores verão o que os vizinhos não têm.
+
+DUAS FORMAS DE OBTER
+1. Uma cópia para o seu servidor (Uma das 15): Você reserva uma das quinze cópias e roda a cúpula no seu projeto pelo preço cheio. Quem chega a tempo entra no grupo seleto de servidores com essa mecânica.
+2. Compra total (Exclusivo): Você leva o plugin para uso exclusivo. Após a compra, as vendas fecham por completo — a mecânica fica só com você e não aparece em nenhum outro lugar.
+
+PARA QUEM É
+Servidores PvE · Proteção anti-wipe · Pacotes VIP / Premium · Projetos de clã · Zonas de evento · Grandes servidores Rust
+
+A OFERTA JÁ FOI ENVIADA
+A oferta foi enviada aos admins de grandes servidores Rust. As cópias disponíveis diminuem a cada dia.
+Escreva: @pluginsrust_bot
+====================================================
