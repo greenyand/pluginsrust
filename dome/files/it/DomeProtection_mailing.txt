@@ -1,0 +1,25 @@
+DomeProtection — una rara meccanica di protezione per server Rust, solo 15 copie
+
+Salve.
+
+Le propongo di valutare DomeProtection — una cupola protettiva per una base su server Rust.
+
+Non è un plugin di massa. Sono previste solo 15 copie nel mondo, perché la meccanica non finisca su un server sì e uno no e resti davvero rara. L'offerta viene attualmente inviata agli amministratori di grandi server Rust. Chi arriva in tempo — e a chi si adatta — può prenotare una copia.
+
+Cosa dà DomeProtection al tuo server:
+— Copre la base del giocatore con una cupola di forza: tutto all'interno diventa immune al danno esterno.
+— Dà al giocatore un valore chiaro e concreto — la protezione dei suoi progressi. Facile da spiegare nel donation shop e facile da vendere.
+— Una bella sfera luminosa, segnata sulla mappa: un privilegio che si vuole mostrare e ricomprare.
+— Si adatta con flessibilità al tuo progetto e a diverse fasce di prezzo — dal VIP base al privilegio top.
+— Una base pronta per pacchetti Premium, zone PvE, basi di clan ed evento.
+
+Perché è interessante per un server:
+Il giocatore non compra un comando astratto, ma la protezione concreta della sua base. È uno dei valori più chiari e più venduti in Rust. E il codice del plugin è unico e praticamente non diffuso — i tuoi giocatori avranno ciò che i vicini non hanno.
+
+È inoltre possibile un acquisto totale in uso esclusivo. Dopo l'acquisto le vendite si chiudono e la meccanica resta solo sul tuo progetto.
+
+Se ti interessa — rispondi e ti invierò condizioni e una dimostrazione.
+
+Cordiali saluti,
+Rust Plugins
+@pluginsrust_bot

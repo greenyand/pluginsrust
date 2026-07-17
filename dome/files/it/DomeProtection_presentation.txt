@@ -1,0 +1,30 @@
+DOME PROTECTION
+Serie limitata · Rust — 15 copie nel mondo
+====================================================
+
+L'IDEA
+Una zona intoccabile attorno alla base
+DomeProtection copre la base del giocatore con una cupola di forza. Tutto ciò che è all'interno diventa invulnerabile — costruzioni, difese e veicoli sono protetti dai danni esterni. Fuori, è il solito Rust hardcore. Dentro, un territorio che non si può violare.
+
+PERCHÉ VENDE
+Il giocatore compra tranquillità, non un « comando »
+- Protezione assoluta: Sotto la cupola i progressi del giocatore sopravvivono a ogni assalto. Un valore chiaro, facile da vendere nel donation shop.
+- Resa spettacolare: La cupola appare come una bella sfera luminosa, segnata sulla mappa. Un privilegio che si vuole mostrare e ricomprare.
+- Configurazione flessibile: La zona e l'aspetto della sfera si adattano al tuo progetto e a diverse fasce di prezzo — dal VIP base al privilegio top.
+- Monetizzazione VIP: Una base pronta per pacchetti Premium, zone PvE, basi di clan ed evento. La meccanica per cui ci si abbona.
+
+IL PRINCIPIO DELLA RARITÀ
+Solo 15 copie. Non una di più.
+Volutamente non rendiamo DomeProtection un prodotto di massa. Quindici server nel mondo — poi la vendita si ferma. Non è un plugin « come tutti gli altri »: il suo codice è unico e praticamente non diffuso. I tuoi giocatori vedranno ciò che i vicini non hanno.
+
+DUE MODI PER AVERLO
+1. Una copia per il tuo server (Una delle 15): Prenoti una delle quindici copie e avvii la cupola sul tuo progetto a prezzo pieno. Chi arriva in tempo entra nella cerchia ristretta di server con questa meccanica.
+2. Acquisto totale (Esclusiva): Prendi il plugin in uso esclusivo. Dopo l'acquisto le vendite si chiudono del tutto — la meccanica resta solo tua e non appare da nessun'altra parte.
+
+A CHI SI RIVOLGE
+Server PvE · Protezione anti-wipe · Pacchetti VIP / Premium · Progetti di clan · Zone evento · Grandi server Rust
+
+L'OFFERTA È GIÀ PARTITA
+L'offerta è stata inviata agli admin dei grandi server Rust. Le copie disponibili calano ogni giorno.
+Scrivi: @pluginsrust_bot
+====================================================
